@@ -1,0 +1,1751 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Establo Montenegro – Restaurante Campestre</title>
+  <link rel="stylesheet" href="stykes.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     LOGIN PAGE
+══════════════════════════════════════ -->
+<div id="page-login" class="page active">
+  <div class="login-scene">
+    <div class="login-bg-img">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600" alt="Restaurante campestre" class="login-bg-photo"/>
+    </div>
+    <div class="login-overlay"></div>
+    <div class="login-card">
+      <div class="login-logo">
+        <div class="login-brand-line"></div>
+        <h1>Establo Montenegro</h1>
+        <p class="login-subtitle">Restaurante Campestre &middot; Chiclayo, Perú</p>
+        <div class="login-brand-line"></div>
+      </div>
+      <div class="login-form">
+        <div class="input-group">
+          <label for="username">Usuario</label>
+          <input type="text" id="username" placeholder="admin" autocomplete="off"/>
+        </div>
+        <div class="input-group">
+          <label for="password">Contraseña</label>
+          <input type="password" id="password" placeholder="••••••••"/>
+          <span class="toggle-pw" id="togglePw">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </span>
+        </div>
+        <div class="login-options">
+          <label class="checkbox-label"><input type="checkbox" id="remember"/> Recordarme</label>
+          <a href="#" class="forgot-link">¿Olvidaste tu contraseña?</a>
+        </div>
+        <button class="btn-login" id="btnLogin">Ingresar al sistema</button>
+        <p class="login-hint">Demo: <strong>admin</strong> / <strong>1234</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     MAIN APP
+══════════════════════════════════════ -->
+<div id="app" class="hidden">
+
+  <!-- TOP NAVBAR -->
+  <header class="navbar" id="navbar">
+    <div class="nav-left">
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-brand">
+        <span class="brand-em">Establo</span> Montenegro
+      </div>
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#" class="nav-item active" data-page="inicio">Inicio</a>
+      <a href="#" class="nav-item" data-page="reservas">Reservas</a>
+      <a href="#" class="nav-item" data-page="menu">Carta</a>
+      <a href="#" class="nav-item" data-page="canchas">Canchas</a>
+      <a href="#" class="nav-item" data-page="pedidos">Pedidos</a>
+      <a href="#" class="nav-item" data-page="galeria">Galería</a>
+      <a href="#" class="nav-item" data-page="dashboard">Dashboard</a>
+      <a href="#" class="nav-item" data-page="contacto">Contacto</a>
+    </nav>
+    <div class="nav-right">
+      <span class="user-badge" id="userBadge">Admin</span>
+      <button class="btn-logout" id="btnLogout">Salir</button>
+    </div>
+  </header>
+
+  <!-- MOBILE SIDEBAR -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div>
+        <div class="sidebar-brand">Establo Montenegro</div>
+        <div class="sidebar-sub">Restaurante Campestre</div>
+      </div>
+      <button class="close-sidebar" id="closeSidebar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="#" class="sidebar-item" data-page="inicio">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+        Inicio
+      </a>
+      <a href="#" class="sidebar-item" data-page="reservas">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Reservas
+      </a>
+      <a href="#" class="sidebar-item" data-page="menu">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        Carta
+      </a>
+      <a href="#" class="sidebar-item" data-page="canchas">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+        Canchas
+      </a>
+      <a href="#" class="sidebar-item" data-page="pedidos">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+        Pedidos
+      </a>
+      <a href="#" class="sidebar-item" data-page="galeria">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+        Galería
+      </a>
+      <a href="#" class="sidebar-item" data-page="dashboard">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Dashboard
+      </a>
+      <a href="#" class="sidebar-item" data-page="contacto">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.56 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Contacto
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <button class="sidebar-logout" id="sidebarLogout">Cerrar sesión</button>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- ═══════════════════════════════
+         INICIO
+    ═══════════════════════════════ -->
+    <section id="page-inicio" class="content-page active">
+
+      <!-- CARRUSEL HERO -->
+      <div class="carousel-hero">
+        <div class="carousel-track" id="carouselTrack">
+          <div class="carousel-slide">
+            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=80" alt="Restaurante campestre" class="carousel-img"/>
+            <div class="carousel-caption">
+              <span class="carousel-tag">Bienvenidos</span>
+              <h2>Sabores auténticos<br/><em>del campo peruano</em></h2>
+              <p>Una experiencia gastronómica única rodeada de naturaleza</p>
+              <div class="carousel-btns">
+                <button class="btn-hero-primary" data-page="reservas">Reservar ahora</button>
+                <button class="btn-hero-secondary" data-page="menu">Ver carta</button>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-slide">
+            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1600&q=80" alt="Ambiente del restaurante" class="carousel-img"/>
+            <div class="carousel-caption">
+              <span class="carousel-tag">Gastronomía</span>
+              <h2>Tradición y sazón<br/><em>lambayecana</em></h2>
+              <p>Platos preparados con ingredientes frescos y recetas tradicionales</p>
+              <div class="carousel-btns">
+                <button class="btn-hero-primary" data-page="menu">Descubrir la carta</button>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-slide">
+            <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1600&q=80" alt="Canchas deportivas" class="carousel-img"/>
+            <div class="carousel-caption">
+              <span class="carousel-tag">Deporte</span>
+              <h2>Canchas de primer nivel<br/><em>fútbol y vóley</em></h2>
+              <p>Canchas profesionales con iluminación nocturna y césped natural</p>
+              <div class="carousel-btns">
+                <button class="btn-hero-primary" data-page="canchas">Ver canchas</button>
+                <button class="btn-hero-secondary" data-page="reservas">Reservar</button>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-slide">
+            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1600&q=80" alt="Eventos privados" class="carousel-img"/>
+            <div class="carousel-caption">
+              <span class="carousel-tag">Eventos</span>
+              <h2>El lugar ideal<br/><em>para celebrar</em></h2>
+              <p>Canchas, piscina y espacios para eventos privados y familiares</p>
+              <div class="carousel-btns">
+                <button class="btn-hero-primary" data-page="reservas">Cotizar evento</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-controls">
+          <button class="carousel-btn prev" id="carouselPrev">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15,18 9,12 15,6"/></svg>
+          </button>
+          <div class="carousel-dots" id="carouselDots"></div>
+          <button class="carousel-btn next" id="carouselNext">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9,18 15,12 9,6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- STATS -->
+      <div class="stats-ribbon">
+        <div class="stat-item">
+          <span class="stat-number">24</span>
+          <span class="stat-label">Reservas hoy</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">87</span>
+          <span class="stat-label">Pedidos activos</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">S/ 4,250</span>
+          <span class="stat-label">Ventas del día</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">12</span>
+          <span class="stat-label">Canchas reservadas</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">78%</span>
+          <span class="stat-label">Ocupación</span>
+        </div>
+      </div>
+
+      <!-- SERVICIOS CON HOVER EFFECT -->
+      <div class="section-header">
+        <span class="section-tag">Nuestros Servicios</span>
+        <h2 class="section-title">Todo lo que ofrecemos</h2>
+        <p class="section-sub">Pasa el cursor sobre cada servicio para más información</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80" alt="Cancha deportiva"/>
+          <div class="service-overlay">
+            <div class="service-info">
+              <h3>Canchas Deportivas</h3>
+              <p>Canchas de fútbol y vóley de primer nivel. Disponibles para alquiler por horas con iluminación nocturna y césped natural.</p>
+              <ul>
+                <li>Fútbol 7 y 11</li>
+                <li>Vóley playa</li>
+                <li>Horario: 8am – 10pm</li>
+                <li>Desde S/ 80/hora</li>
+              </ul>
+              <button class="service-btn" data-page="canchas">Ver canchas</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80" alt="Piscina familiar"/>
+          <div class="service-overlay">
+            <div class="service-info">
+              <h3>Piscina Familiar</h3>
+              <p>Piscina amplia con zona de niños y adultos. Ambiente relajado rodeado de naturaleza, perfecta para días de descanso.</p>
+              <ul>
+                <li>Zona para niños</li>
+                <li>Zona para adultos</li>
+                <li>Fines de semana abierta</li>
+                <li>Entrada: S/ 15/persona</li>
+              </ul>
+              <button class="service-btn" data-page="reservas">Reservar ingreso</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=800&q=80" alt="Restaurante campestre"/>
+          <div class="service-overlay">
+            <div class="service-info">
+              <h3>Restaurante Campestre</h3>
+              <p>Gastronomía norteña de autor. Cuy frito, parrillas, ceviche y lo mejor de la cocina lambayecana en un entorno natural.</p>
+              <ul>
+                <li>Platos típicos peruanos</li>
+                <li>Parrillas al carbón</li>
+                <li>Menús grupales</li>
+                <li>Capacidad: 120 personas</li>
+              </ul>
+              <button class="service-btn" data-page="menu">Ver carta</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80" alt="Eventos privados"/>
+          <div class="service-overlay">
+            <div class="service-info">
+              <h3>Eventos Privados</h3>
+              <p>El escenario perfecto para cumpleaños, matrimonios, reuniones corporativas y celebraciones familiares inolvidables.</p>
+              <ul>
+                <li>Decoración incluida</li>
+                <li>Catering personalizado</li>
+                <li>DJ y sonido</li>
+                <li>Hasta 300 personas</li>
+              </ul>
+              <button class="service-btn" data-page="reservas">Cotizar evento</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CANCHAS DEPORTIVAS HIGHLIGHT -->
+      <div class="canchas-highlight">
+        <div class="canchas-hl-content">
+          <span class="section-tag">Deporte & Recreación</span>
+          <h2 class="canchas-hl-title">Canchas Profesionales<br/><em>Fútbol &amp; Vóley</em></h2>
+          <p>Disfruta de nuestras canchas de césped natural con medidas reglamentarias, iluminación LED nocturna y vestuarios completos. Perfectas para partidos, torneos y entrenamientos.</p>
+          <div class="canchas-hl-features">
+            <div class="ch-feature">
+              <div class="ch-feature-icon">⚽</div>
+              <div>
+                <strong>Fútbol 7 y 11</strong>
+                <span>Césped natural · 2 canchas</span>
+              </div>
+            </div>
+            <div class="ch-feature">
+              <div class="ch-feature-icon">🏐</div>
+              <div>
+                <strong>Vóley Playa</strong>
+                <span>Arena fina · 2 canchas</span>
+              </div>
+            </div>
+            <div class="ch-feature">
+              <div class="ch-feature-icon">💡</div>
+              <div>
+                <strong>Iluminación Nocturna</strong>
+                <span>Disponible hasta las 10pm</span>
+              </div>
+            </div>
+            <div class="ch-feature">
+              <div class="ch-feature-icon">🚿</div>
+              <div>
+                <strong>Vestuarios</strong>
+                <span>Duchas y camerinos</span>
+              </div>
+            </div>
+          </div>
+          <div class="canchas-hl-btns">
+            <button class="btn-hero-primary" data-page="canchas">Ver disponibilidad</button>
+            <button class="btn-hero-secondary" data-page="reservas">Reservar cancha</button>
+          </div>
+        </div>
+        <div class="canchas-hl-imgs">
+          <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=700&q=80" alt="Cancha fútbol" class="chl-img-main"/>
+          <img src="https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=400&q=80" alt="Cancha voley" class="chl-img-sm"/>
+        </div>
+      </div>
+
+      <!-- SOBRE NOSOTROS -->
+      <div class="about-section">
+        <div class="about-images">
+          <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&q=80" alt="Ambiente del restaurante" class="about-img-main"/>
+          <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=400&q=80" alt="Chef cocinando" class="about-img-sm about-img-sm-1"/>
+          <img src="https://images.unsplash.com/photo-1555244162-803834f70033?w=400&q=80" alt="Plato especial" class="about-img-sm about-img-sm-2"/>
+        </div>
+        <div class="about-text">
+          <span class="section-tag">Nuestra Historia</span>
+          <h2 class="about-title">Más de 15 años<br/><em>en el corazón de Chiclayo</em></h2>
+          <p>Establo Montenegro nació con la misión de ofrecer una experiencia gastronómica auténtica, fusionando los sabores tradicionales de Lambayeque con un ambiente campestre único y acogedor.</p>
+          <p>Nuestros chefs trabajan cada día con ingredientes frescos y de temporada, respetando las recetas que han pasado de generación en generación.</p>
+          <div class="about-stats">
+            <div class="about-stat">
+              <span class="about-stat-num">15+</span>
+              <span class="about-stat-lbl">Años de experiencia</span>
+            </div>
+            <div class="about-stat">
+              <span class="about-stat-num">50k+</span>
+              <span class="about-stat-lbl">Clientes satisfechos</span>
+            </div>
+            <div class="about-stat">
+              <span class="about-stat-num">30+</span>
+              <span class="about-stat-lbl">Platos en carta</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PLATOS DESTACADOS PREVIEW -->
+      <div class="section-header">
+        <span class="section-tag">Nuestra Carta</span>
+        <h2 class="section-title">Platos estrella</h2>
+      </div>
+      <div class="featured-dishes">
+        <div class="dish-card">
+          <div class="dish-img-wrap">
+            <img src="https://images.unsplash.com/photo-1600803907087-f56d462fd26b?w=600&q=80" alt="Cuy frito"/>
+            <span class="dish-badge">Popular</span>
+          </div>
+          <div class="dish-info">
+            <h4>Cuy Frito</h4>
+            <p>Con papas doradas y ensalada criolla</p>
+            <span class="dish-price">S/ 35.00</span>
+          </div>
+        </div>
+        <div class="dish-card">
+          <div class="dish-img-wrap">
+            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80" alt="Parrilla campestre"/>
+            <span class="dish-badge">Chef's pick</span>
+          </div>
+          <div class="dish-info">
+            <h4>Parrilla Campestre</h4>
+            <p>Lomo, costillas y chorizos al carbón</p>
+            <span class="dish-price">S/ 55.00</span>
+          </div>
+        </div>
+        <div class="dish-card">
+          <div class="dish-img-wrap">
+            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=80" alt="Ceviche clásico"/>
+          </div>
+          <div class="dish-info">
+            <h4>Ceviche Clásico</h4>
+            <p>Corvina fresca con leche de tigre</p>
+            <span class="dish-price">S/ 28.00</span>
+          </div>
+        </div>
+        <div class="dish-card">
+          <div class="dish-img-wrap">
+            <img src="https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=600&q=80" alt="Pollo a la brasa"/>
+          </div>
+          <div class="dish-info">
+            <h4>Pollo a la Brasa</h4>
+            <p>Entero al carbón con papas y ensalada</p>
+            <span class="dish-price">S/ 42.00</span>
+          </div>
+        </div>
+      </div>
+      <div class="center-btn">
+        <button class="btn-primary" data-page="menu">Ver carta completa</button>
+      </div>
+
+    </section>
+
+    <!-- ═══════════════════════════════
+         RESERVAS — MEJORADO
+    ═══════════════════════════════ -->
+    <section id="page-reservas" class="content-page">
+      <div class="page-header">
+        <div>
+          <h2 class="page-title">Gestión de Reservas</h2>
+          <p class="page-sub">Administra todas las reservas del establecimiento</p>
+        </div>
+        <button class="btn-primary" id="openReservaModal">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Nueva Reserva
+        </button>
+      </div>
+
+      <!-- STATS RESERVAS -->
+      <div class="reservas-stats">
+        <div class="rstat-card rstat-green">
+          <div class="rstat-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>
+          </div>
+          <div>
+            <p class="rstat-num" id="countConfirmadas">3</p>
+            <p class="rstat-lbl">Confirmadas</p>
+          </div>
+        </div>
+        <div class="rstat-card rstat-amber">
+          <div class="rstat-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+          </div>
+          <div>
+            <p class="rstat-num" id="countPendientes">1</p>
+            <p class="rstat-lbl">Pendientes</p>
+          </div>
+        </div>
+        <div class="rstat-card rstat-red">
+          <div class="rstat-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          </div>
+          <div>
+            <p class="rstat-num" id="countCanceladas">1</p>
+            <p class="rstat-lbl">Canceladas</p>
+          </div>
+        </div>
+        <div class="rstat-card rstat-blue">
+          <div class="rstat-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <div>
+            <p class="rstat-num" id="countTotal">5</p>
+            <p class="rstat-lbl">Total hoy</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FILTROS -->
+      <div class="filter-bar">
+        <div class="filter-search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" class="filter-input" id="searchReserva" placeholder="Buscar cliente o servicio..."/>
+        </div>
+        <select class="filter-select" id="filterServicio">
+          <option value="">Todos los servicios</option>
+          <option value="Cancha fútbol">Cancha fútbol</option>
+          <option value="Vóley">Vóley</option>
+          <option value="Piscina">Piscina</option>
+          <option value="Restaurante">Restaurante</option>
+          <option value="Evento privado">Evento privado</option>
+        </select>
+        <select class="filter-select" id="filterEstado">
+          <option value="">Todos los estados</option>
+          <option value="Confirmado">Confirmado</option>
+          <option value="Pendiente">Pendiente</option>
+          <option value="Cancelado">Cancelado</option>
+        </select>
+      </div>
+
+      <!-- TABLA MEJORADA -->
+      <div class="table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Cliente</th>
+              <th>Servicio</th>
+              <th>Fecha</th>
+              <th>Hora</th>
+              <th>Personas</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="reservasBody">
+            <tr data-estado="Confirmado">
+              <td><span class="row-id">001</span></td>
+              <td>
+                <div class="client-cell">
+                  <div class="client-avatar">CG</div>
+                  <div><strong>Carlos Gutiérrez</strong><br/><small>+51 944-111-222</small></div>
+                </div>
+              </td>
+              <td><span class="servicio-tag cancha-tag">⚽ Cancha fútbol</span></td>
+              <td>2026-05-03</td>
+              <td>10:00 AM</td>
+              <td><span class="personas-badge">10 pers.</span></td>
+              <td><span class="badge confirmed">Confirmado</span></td>
+              <td class="actions-cell">
+                <button class="btn-action edit-btn" title="Editar">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                </button>
+                <button class="btn-action del-btn" title="Eliminar">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3,6 5,6 21,6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
+                </button>
+              </td>
+            </tr>
+            <tr data-estado="Pendiente">
+              <td><span class="row-id">002</span></td>
+              <td>
+                <div class="client-cell">
+                  <div class="client-avatar">MT</div>
+                  <div><strong>María Torres</strong><br/><small>+51 944-333-444</small></div>
+                </div>
+              </td>
+              <td><span class="servicio-tag piscina-tag">🏊 Piscina</span></td>
+              <td>2026-05-03</td>
+              <td>11:00 AM</td>
+              <td><span class="personas-badge">5 pers.</span></td>
+              <td><span class="badge pending">Pendiente</span></td>
+              <td class="actions-cell">
+                <button class="btn-action edit-btn" title="Editar">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                </button>
+                <button class="btn-action del-btn" title="Eliminar">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3,6 5,6 21,6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
+                </button>
+              </td>
+            </tr>
+            <tr data-estado="Confirmado">
+              <td><span class="row-id">003</span></td>
+              <td>
+                <div class="client-cell">
+                  <div class="client-avatar">FR</div>
+                  <div><strong>Familia Rojas</strong><br/><small>+51 944-555-666</small></div>
+                </div>
+              </td>
+              <td><span class="servicio-tag evento-tag">🎉 Evento privado</span></td>
+              <td>2026-05-04</td>
+              <td>01:00 PM</td>
+              <td><span class="personas-badge">30 pers.</span></td>
+              <td><span class="badge confirmed">Confirmado</span></td>
+              <td class="actions-cell">
+                <button class="btn-action edit-btn" title="Editar">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                </button>
+                <button class="btn-action del-btn" title="Eliminar">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3,6 5,6 21,6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
+                </button>
+              </td>
+            </tr>
+            <tr data-estado="Cancelado">
+              <td><span class="row-id">004</span></td>
+              <td>
+                <div class="client-cell">
+                  <div class="client-avatar">PL</div>
+                  <div><strong>Pedro Llauce</strong><br/><small>+51 944-777-888</small></div>
+                </div>
+              </td>
+              <td><span class="servicio-tag rest-tag">🍽️ Restaurante</span></td>
+              <td>2026-05-02</td>
+              <td>12:30 PM</td>
+              <td><span class="personas-badge">8 pers.</span></td>
+              <td><span class="badge cancelled">Cancelado</span></td>
+              <td class="actions-cell">
+                <button class="btn-action edit-btn" title="Editar">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                </button>
+                <button class="btn-action del-btn" title="Eliminar">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3,6 5,6 21,6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
+                </button>
+              </td>
+            </tr>
+            <tr data-estado="Confirmado">
+              <td><span class="row-id">005</span></td>
+              <td>
+                <div class="client-cell">
+                  <div class="client-avatar">JV</div>
+                  <div><strong>José Vásquez</strong><br/><small>+51 944-999-000</small></div>
+                </div>
+              </td>
+              <td><span class="servicio-tag voley-tag">🏐 Vóley</span></td>
+              <td>2026-05-03</td>
+              <td>04:00 PM</td>
+              <td><span class="personas-badge">12 pers.</span></td>
+              <td><span class="badge confirmed">Confirmado</span></td>
+              <td class="actions-cell">
+                <button class="btn-action edit-btn" title="Editar">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                </button>
+                <button class="btn-action del-btn" title="Eliminar">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3,6 5,6 21,6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="table-footer">
+          <span id="tableCount">Mostrando 5 reservas</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════
+         MENÚ
+    ═══════════════════════════════ -->
+    <section id="page-menu" class="content-page">
+      <div class="page-header">
+        <div>
+          <h2 class="page-title">Carta del Restaurante</h2>
+          <p class="page-sub">Platos preparados con ingredientes frescos de temporada</p>
+        </div>
+        <button class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Agregar plato
+        </button>
+      </div>
+
+      <div class="menu-tabs" id="menuTabs">
+        <button class="menu-tab active" data-cat="all">Todos</button>
+        <button class="menu-tab" data-cat="entradas">Entradas</button>
+        <button class="menu-tab" data-cat="fondos">Fondos</button>
+        <button class="menu-tab" data-cat="bebidas">Bebidas</button>
+        <button class="menu-tab" data-cat="postres">Postres</button>
+      </div>
+
+      <div class="menu-grid" id="menuGrid">
+        <div class="menu-card" data-cat="fondos">
+          <div class="menu-img-wrap">
+            <img src="https://images.unsplash.com/photo-1600803907087-f56d462fd26b?w=500&q=80" alt="Cuy Frito"/>
+          </div>
+          <div class="menu-body">
+            <div class="menu-cat-tag">Fondo</div>
+            <h4>Cuy Frito</h4>
+            <p>Tradicional cuy frito con papas doradas y ensalada criolla al estilo lambayecano</p>
+            <div class="menu-footer">
+              <span class="menu-price">S/ 35.00</span>
+              <span class="badge stock-ok">Disponible</span>
+            </div>
+          </div>
+        </div>
+        <div class="menu-card" data-cat="fondos">
+          <div class="menu-img-wrap">
+            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=500&q=80" alt="Parrilla Campestre"/>
+          </div>
+          <div class="menu-body">
+            <div class="menu-cat-tag">Fondo</div>
+            <h4>Parrilla Campestre</h4>
+            <p>Lomo fino, costillas y chorizos a la parrilla con chimichurri artesanal</p>
+            <div class="menu-footer">
+              <span class="menu-price">S/ 55.00</span>
+              <span class="badge stock-ok">Disponible</span>
+            </div>
+          </div>
+        </div>
+        <div class="menu-card" data-cat="entradas">
+          <div class="menu-img-wrap">
+            <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=500&q=80" alt="Causa Limeña"/>
+          </div>
+          <div class="menu-body">
+            <div class="menu-cat-tag">Entrada</div>
+            <h4>Causa Limeña</h4>
+            <p>Papa amarilla rellena de pollo desmenuzado con ají amarillo y mayonesa</p>
+            <div class="menu-footer">
+              <span class="menu-price">S/ 18.00</span>
+              <span class="badge stock-ok">Disponible</span>
+            </div>
+          </div>
+        </div>
+        <div class="menu-card" data-cat="fondos">
+          <div class="menu-img-wrap">
+            <img src="https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=500&q=80" alt="Pollo a la Brasa"/>
+          </div>
+          <div class="menu-body">
+            <div class="menu-cat-tag">Fondo</div>
+            <h4>Pollo a la Brasa</h4>
+            <p>Pollo entero al carbón con papas fritas crujientes y ensalada fresca</p>
+            <div class="menu-footer">
+              <span class="menu-price">S/ 42.00</span>
+              <span class="badge stock-low">Stock bajo</span>
+            </div>
+          </div>
+        </div>
+        <div class="menu-card" data-cat="bebidas">
+          <div class="menu-img-wrap">
+            <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=500&q=80" alt="Chicha Morada"/>
+          </div>
+          <div class="menu-body">
+            <div class="menu-cat-tag">Bebida</div>
+            <h4>Chicha Morada</h4>
+            <p>Chicha morada casera preparada con canela, clavo de olor y frutas frescas</p>
+            <div class="menu-footer">
+              <span class="menu-price">S/ 8.00</span>
+              <span class="badge stock-ok">Disponible</span>
+            </div>
+          </div>
+        </div>
+        <div class="menu-card" data-cat="postres">
+          <div class="menu-img-wrap">
+            <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=500&q=80" alt="King Kong Artesanal"/>
+          </div>
+          <div class="menu-body">
+            <div class="menu-cat-tag">Postre</div>
+            <h4>King Kong Artesanal</h4>
+            <p>Galleta con relleno de manjar blanco y piña, especialidad lambayecana</p>
+            <div class="menu-footer">
+              <span class="menu-price">S/ 12.00</span>
+              <span class="badge stock-ok">Disponible</span>
+            </div>
+          </div>
+        </div>
+        <div class="menu-card" data-cat="bebidas">
+          <div class="menu-img-wrap">
+            <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=500&q=80" alt="Pisco Sour"/>
+          </div>
+          <div class="menu-body">
+            <div class="menu-cat-tag">Bebida</div>
+            <h4>Pisco Sour</h4>
+            <p>Preparado artesanal con pisco quebranta, limón de Chulucanas y clara de huevo</p>
+            <div class="menu-footer">
+              <span class="menu-price">S/ 15.00</span>
+              <span class="badge stock-low">Stock bajo</span>
+            </div>
+          </div>
+        </div>
+        <div class="menu-card" data-cat="entradas">
+          <div class="menu-img-wrap">
+            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&q=80" alt="Ceviche Clásico"/>
+          </div>
+          <div class="menu-body">
+            <div class="menu-cat-tag">Entrada</div>
+            <h4>Ceviche Clásico</h4>
+            <p>Corvina fresca macerada en limón con cebolla morada, ají limo y choclo</p>
+            <div class="menu-footer">
+              <span class="menu-price">S/ 28.00</span>
+              <span class="badge stock-ok">Disponible</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════
+         CANCHAS DEPORTIVAS — NUEVA SECCIÓN
+    ═══════════════════════════════ -->
+    <section id="page-canchas" class="content-page">
+      <!-- HERO CANCHAS -->
+      <div class="canchas-hero">
+        <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1600&q=80" alt="Canchas Establo Montenegro" class="canchas-hero-img"/>
+        <div class="canchas-hero-overlay"></div>
+        <div class="canchas-hero-content">
+          <span class="canchas-hero-tag">⚽ Deporte y Recreación</span>
+          <h1 class="canchas-hero-title">Canchas Deportivas<br/><em>Establo Montenegro</em></h1>
+          <p>Instalaciones de primer nivel para fútbol y vóley en plena naturaleza lambayecana</p>
+          <button class="btn-hero-primary" id="openReservaCancha">Reservar cancha ahora</button>
+        </div>
+      </div>
+
+      <div class="canchas-main-content">
+        <!-- DISPONIBILIDAD HOY -->
+        <div class="section-header" style="padding-top:40px">
+          <span class="section-tag">Disponibilidad</span>
+          <h2 class="section-title">Estado de canchas hoy</h2>
+        </div>
+
+        <div class="canchas-status-grid">
+          <div class="cancha-status-card available">
+            <div class="csc-header">
+              <span class="csc-icon">⚽</span>
+              <div>
+                <h4>Cancha Fútbol N°1</h4>
+                <span class="csc-tipo">Fútbol 11 · Césped natural</span>
+              </div>
+              <span class="csc-badge available-badge">Disponible</span>
+            </div>
+            <div class="csc-schedule">
+              <div class="time-slot free">8:00</div>
+              <div class="time-slot free">9:00</div>
+              <div class="time-slot busy">10:00</div>
+              <div class="time-slot busy">11:00</div>
+              <div class="time-slot free">12:00</div>
+              <div class="time-slot free">13:00</div>
+              <div class="time-slot busy">14:00</div>
+              <div class="time-slot free">15:00</div>
+              <div class="time-slot free">16:00</div>
+              <div class="time-slot busy">17:00</div>
+              <div class="time-slot free">18:00</div>
+              <div class="time-slot free">19:00</div>
+            </div>
+            <div class="csc-footer">
+              <span class="csc-price">S/ 100 / hora</span>
+              <button class="btn-sm btn-confirm" onclick="window.reservarCancha('Cancha Fútbol N°1')">Reservar</button>
+            </div>
+          </div>
+
+          <div class="cancha-status-card busy-card">
+            <div class="csc-header">
+              <span class="csc-icon">⚽</span>
+              <div>
+                <h4>Cancha Fútbol N°2</h4>
+                <span class="csc-tipo">Fútbol 7 · Césped sintético</span>
+              </div>
+              <span class="csc-badge busy-badge">Ocupada ahora</span>
+            </div>
+            <div class="csc-schedule">
+              <div class="time-slot free">8:00</div>
+              <div class="time-slot busy">9:00</div>
+              <div class="time-slot busy">10:00</div>
+              <div class="time-slot free">11:00</div>
+              <div class="time-slot busy">12:00</div>
+              <div class="time-slot busy">13:00</div>
+              <div class="time-slot free">14:00</div>
+              <div class="time-slot free">15:00</div>
+              <div class="time-slot busy">16:00</div>
+              <div class="time-slot busy">17:00</div>
+              <div class="time-slot free">18:00</div>
+              <div class="time-slot free">19:00</div>
+            </div>
+            <div class="csc-footer">
+              <span class="csc-price">S/ 80 / hora</span>
+              <button class="btn-sm btn-confirm" onclick="window.reservarCancha('Cancha Fútbol N°2')">Reservar</button>
+            </div>
+          </div>
+
+          <div class="cancha-status-card available">
+            <div class="csc-header">
+              <span class="csc-icon">🏐</span>
+              <div>
+                <h4>Cancha Vóley N°1</h4>
+                <span class="csc-tipo">Vóley playa · Arena fina</span>
+              </div>
+              <span class="csc-badge available-badge">Disponible</span>
+            </div>
+            <div class="csc-schedule">
+              <div class="time-slot free">8:00</div>
+              <div class="time-slot free">9:00</div>
+              <div class="time-slot free">10:00</div>
+              <div class="time-slot busy">11:00</div>
+              <div class="time-slot busy">12:00</div>
+              <div class="time-slot free">13:00</div>
+              <div class="time-slot free">14:00</div>
+              <div class="time-slot free">15:00</div>
+              <div class="time-slot free">16:00</div>
+              <div class="time-slot busy">17:00</div>
+              <div class="time-slot free">18:00</div>
+              <div class="time-slot free">19:00</div>
+            </div>
+            <div class="csc-footer">
+              <span class="csc-price">S/ 50 / hora</span>
+              <button class="btn-sm btn-confirm" onclick="window.reservarCancha('Cancha Vóley N°1')">Reservar</button>
+            </div>
+          </div>
+
+          <div class="cancha-status-card available">
+            <div class="csc-header">
+              <span class="csc-icon">🏐</span>
+              <div>
+                <h4>Cancha Vóley N°2</h4>
+                <span class="csc-tipo">Vóley indoor · Piso tarkett</span>
+              </div>
+              <span class="csc-badge available-badge">Disponible</span>
+            </div>
+            <div class="csc-schedule">
+              <div class="time-slot free">8:00</div>
+              <div class="time-slot free">9:00</div>
+              <div class="time-slot busy">10:00</div>
+              <div class="time-slot free">11:00</div>
+              <div class="time-slot free">12:00</div>
+              <div class="time-slot busy">13:00</div>
+              <div class="time-slot busy">14:00</div>
+              <div class="time-slot free">15:00</div>
+              <div class="time-slot free">16:00</div>
+              <div class="time-slot free">17:00</div>
+              <div class="time-slot free">18:00</div>
+              <div class="time-slot free">19:00</div>
+            </div>
+            <div class="csc-footer">
+              <span class="csc-price">S/ 50 / hora</span>
+              <button class="btn-sm btn-confirm" onclick="window.reservarCancha('Cancha Vóley N°2')">Reservar</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- RESERVAS DE CANCHAS -->
+        <div class="section-header" style="padding-top:40px">
+          <span class="section-tag">Registro</span>
+          <h2 class="section-title">Reservas de canchas del día</h2>
+        </div>
+
+        <div class="filter-bar">
+          <div class="filter-search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" class="filter-input" id="searchCancha" placeholder="Buscar por cliente o cancha..."/>
+          </div>
+          <select class="filter-select" id="filterTipoCancha">
+            <option value="">Todas las canchas</option>
+            <option value="Fútbol">Fútbol</option>
+            <option value="Vóley">Vóley</option>
+          </select>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Cliente</th>
+                <th>Cancha</th>
+                <th>Fecha</th>
+                <th>Hora inicio</th>
+                <th>Duración</th>
+                <th>Total</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="canchasBody">
+              <tr data-tipo="Fútbol">
+                <td><span class="row-id">C01</span></td>
+                <td>
+                  <div class="client-cell">
+                    <div class="client-avatar">CG</div>
+                    <strong>Carlos Gutiérrez</strong>
+                  </div>
+                </td>
+                <td><span class="servicio-tag cancha-tag">⚽ Fútbol N°1</span></td>
+                <td>2026-05-03</td>
+                <td>10:00 AM</td>
+                <td>2 horas</td>
+                <td><strong class="precio-cell">S/ 200</strong></td>
+                <td><span class="badge confirmed">Confirmado</span></td>
+                <td class="actions-cell">
+                  <button class="btn-action edit-btn" title="Editar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+                  <button class="btn-action del-btn" title="Eliminar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3,6 5,6 21,6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg></button>
+                </td>
+              </tr>
+              <tr data-tipo="Fútbol">
+                <td><span class="row-id">C02</span></td>
+                <td>
+                  <div class="client-cell">
+                    <div class="client-avatar">AM</div>
+                    <strong>Andrés Muro</strong>
+                  </div>
+                </td>
+                <td><span class="servicio-tag cancha-tag">⚽ Fútbol N°2</span></td>
+                <td>2026-05-03</td>
+                <td>09:00 AM</td>
+                <td>1 hora</td>
+                <td><strong class="precio-cell">S/ 80</strong></td>
+                <td><span class="badge confirmed">Confirmado</span></td>
+                <td class="actions-cell">
+                  <button class="btn-action edit-btn" title="Editar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+                  <button class="btn-action del-btn" title="Eliminar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3,6 5,6 21,6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg></button>
+                </td>
+              </tr>
+              <tr data-tipo="Vóley">
+                <td><span class="row-id">C03</span></td>
+                <td>
+                  <div class="client-cell">
+                    <div class="client-avatar">JV</div>
+                    <strong>José Vásquez</strong>
+                  </div>
+                </td>
+                <td><span class="servicio-tag voley-tag">🏐 Vóley N°1</span></td>
+                <td>2026-05-03</td>
+                <td>11:00 AM</td>
+                <td>2 horas</td>
+                <td><strong class="precio-cell">S/ 100</strong></td>
+                <td><span class="badge pending">Pendiente</span></td>
+                <td class="actions-cell">
+                  <button class="btn-action edit-btn" title="Editar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+                  <button class="btn-action del-btn" title="Eliminar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3,6 5,6 21,6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="table-footer">
+            <span>3 reservas de canchas hoy · Total: <strong>S/ 380</strong></span>
+          </div>
+        </div>
+
+        <!-- TARIFAS -->
+        <div class="section-header" style="padding-top:48px">
+          <span class="section-tag">Precios</span>
+          <h2 class="section-title">Tarifas y servicios incluidos</h2>
+        </div>
+
+        <div class="tarifas-grid">
+          <div class="tarifa-card tarifa-futbol">
+            <div class="tarifa-icon">⚽</div>
+            <h3>Fútbol 11</h3>
+            <div class="tarifa-price">S/ 100<span>/hora</span></div>
+            <ul class="tarifa-list">
+              <li>Césped natural reglamentario</li>
+              <li>Iluminación nocturna LED</li>
+              <li>Vestuarios y duchas</li>
+              <li>Estacionamiento incluido</li>
+              <li>Árbitro disponible (+S/30)</li>
+            </ul>
+            <button class="btn-primary" onclick="window.reservarCancha('Cancha Fútbol N°1')">Reservar ahora</button>
+          </div>
+          <div class="tarifa-card tarifa-futbol7">
+            <div class="tarifa-icon">⚽</div>
+            <h3>Fútbol 7</h3>
+            <div class="tarifa-price">S/ 80<span>/hora</span></div>
+            <ul class="tarifa-list">
+              <li>Césped sintético premium</li>
+              <li>Iluminación nocturna</li>
+              <li>Vestuarios y duchas</li>
+              <li>Estacionamiento incluido</li>
+              <li>Vallas y porterías incluidas</li>
+            </ul>
+            <button class="btn-primary" onclick="window.reservarCancha('Cancha Fútbol N°2')">Reservar ahora</button>
+          </div>
+          <div class="tarifa-card tarifa-voley">
+            <div class="tarifa-icon">🏐</div>
+            <h3>Vóley Playa</h3>
+            <div class="tarifa-price">S/ 50<span>/hora</span></div>
+            <ul class="tarifa-list">
+              <li>Arena fina importada</li>
+              <li>Iluminación nocturna</li>
+              <li>Vestuarios disponibles</li>
+              <li>Red y balones incluidos</li>
+              <li>Máx. 12 jugadores</li>
+            </ul>
+            <button class="btn-primary" onclick="window.reservarCancha('Cancha Vóley N°1')">Reservar ahora</button>
+          </div>
+          <div class="tarifa-card tarifa-pack">
+            <div class="tarifa-icon">🏆</div>
+            <h3>Pack Campeonato</h3>
+            <div class="tarifa-price">S/ 350<span>/día</span></div>
+            <ul class="tarifa-list">
+              <li>Acceso todo el día</li>
+              <li>Hasta 4 canchas</li>
+              <li>Trofeos personalizados</li>
+              <li>Catering incluido</li>
+              <li>Árbitro y sonido</li>
+            </ul>
+            <button class="btn-primary" data-page="contacto">Cotizar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════
+         PEDIDOS — MEJORADO
+    ═══════════════════════════════ -->
+    <section id="page-pedidos" class="content-page">
+      <div class="page-header">
+        <div>
+          <h2 class="page-title">Gestión de Pedidos</h2>
+          <p class="page-sub">Seguimiento en tiempo real de los pedidos activos</p>
+        </div>
+        <div class="pedidos-header-actions">
+          <div class="pedidos-live-badge">
+            <span class="live-dot"></span> En vivo
+          </div>
+          <button class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Nuevo Pedido
+          </button>
+        </div>
+      </div>
+
+      <!-- RESUMEN PEDIDOS -->
+      <div class="pedidos-summary">
+        <div class="ps-item">
+          <span class="ps-num">3</span>
+          <span class="ps-label">Pendientes</span>
+          <div class="ps-bar pending-bar"></div>
+        </div>
+        <div class="ps-item">
+          <span class="ps-num">2</span>
+          <span class="ps-label">En cocina</span>
+          <div class="ps-bar cooking-bar"></div>
+        </div>
+        <div class="ps-item">
+          <span class="ps-num">2</span>
+          <span class="ps-label">Listos</span>
+          <div class="ps-bar ready-bar"></div>
+        </div>
+        <div class="ps-sep"></div>
+        <div class="ps-item">
+          <span class="ps-num">S/ 576</span>
+          <span class="ps-label">Total activo</span>
+          <div class="ps-bar total-bar"></div>
+        </div>
+      </div>
+
+      <div class="kanban-board">
+        <!-- PENDIENTE -->
+        <div class="kanban-col">
+          <div class="kanban-header pending-h">
+            <span class="kanban-dot"></span>
+            <span>Pendiente</span>
+            <span class="kanban-count">3</span>
+          </div>
+          <div class="kanban-card">
+            <div class="order-top">
+              <div class="order-meta">
+                <span class="order-num">Mesa 5</span>
+                <span class="order-tag-rest">Restaurante</span>
+              </div>
+              <span class="order-time">⏱ 12:03 PM</span>
+            </div>
+            <ul class="order-items">
+              <li><span class="item-qty">2×</span> Cuy Frito</li>
+              <li><span class="item-qty">4×</span> Chicha Morada</li>
+            </ul>
+            <div class="order-bottom">
+              <span class="order-total">S/ 102.00</span>
+              <button class="btn-sm btn-confirm">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20,6 9,17 4,12"/></svg>
+                Confirmar
+              </button>
+            </div>
+          </div>
+          <div class="kanban-card">
+            <div class="order-top">
+              <div class="order-meta">
+                <span class="order-num">Mesa 8</span>
+                <span class="order-tag-rest">Restaurante</span>
+              </div>
+              <span class="order-time">⏱ 12:10 PM</span>
+            </div>
+            <ul class="order-items">
+              <li><span class="item-qty">1×</span> Parrilla Campestre</li>
+              <li><span class="item-qty">2×</span> Pisco Sour</li>
+            </ul>
+            <div class="order-bottom">
+              <span class="order-total">S/ 85.00</span>
+              <button class="btn-sm btn-confirm">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20,6 9,17 4,12"/></svg>
+                Confirmar
+              </button>
+            </div>
+          </div>
+          <div class="kanban-card">
+            <div class="order-top">
+              <div class="order-meta">
+                <span class="order-num">Mesa 2</span>
+                <span class="order-tag-rest">Restaurante</span>
+              </div>
+              <span class="order-time">⏱ 12:18 PM</span>
+            </div>
+            <ul class="order-items">
+              <li><span class="item-qty">1×</span> Ceviche Clásico</li>
+              <li><span class="item-qty">1×</span> Causa Limeña</li>
+            </ul>
+            <div class="order-bottom">
+              <span class="order-total">S/ 46.00</span>
+              <button class="btn-sm btn-confirm">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20,6 9,17 4,12"/></svg>
+                Confirmar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- EN PREPARACIÓN -->
+        <div class="kanban-col">
+          <div class="kanban-header cooking-h">
+            <span class="kanban-dot"></span>
+            <span>En preparación</span>
+            <span class="kanban-count">2</span>
+          </div>
+          <div class="kanban-card cooking-card">
+            <div class="cooking-timer">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+              Desde 11:50 AM · ~15 min
+            </div>
+            <div class="order-top">
+              <div class="order-meta">
+                <span class="order-num">Mesa 1</span>
+                <span class="order-tag-rest">Restaurante</span>
+              </div>
+            </div>
+            <ul class="order-items">
+              <li><span class="item-qty">3×</span> Pollo a la Brasa</li>
+              <li><span class="item-qty">3×</span> King Kong</li>
+            </ul>
+            <div class="order-bottom">
+              <span class="order-total">S/ 162.00</span>
+              <button class="btn-sm btn-ready">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
+                Listo
+              </button>
+            </div>
+          </div>
+          <div class="kanban-card cooking-card">
+            <div class="cooking-timer">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+              Desde 11:58 AM · ~8 min
+            </div>
+            <div class="order-top">
+              <div class="order-meta">
+                <span class="order-num">Mesa 11</span>
+                <span class="order-tag-rest">Restaurante</span>
+              </div>
+            </div>
+            <ul class="order-items">
+              <li><span class="item-qty">2×</span> Cuy Frito</li>
+              <li><span class="item-qty">1×</span> Parrilla Campestre</li>
+            </ul>
+            <div class="order-bottom">
+              <span class="order-total">S/ 125.00</span>
+              <button class="btn-sm btn-ready">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
+                Listo
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ENTREGADO -->
+        <div class="kanban-col">
+          <div class="kanban-header served-h">
+            <span class="kanban-dot"></span>
+            <span>Entregado</span>
+            <span class="kanban-count">2</span>
+          </div>
+          <div class="kanban-card delivered">
+            <div class="delivered-check">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20,6 9,17 4,12"/></svg>
+              Entregado a las 11:30 AM
+            </div>
+            <div class="order-top">
+              <div class="order-meta">
+                <span class="order-num">Mesa 3</span>
+              </div>
+            </div>
+            <ul class="order-items">
+              <li><span class="item-qty">2×</span> Ceviche Clásico</li>
+            </ul>
+            <div class="order-bottom">
+              <span class="order-total">S/ 56.00</span>
+              <button class="btn-sm btn-bill">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                Cobrar
+              </button>
+            </div>
+          </div>
+          <div class="kanban-card delivered">
+            <div class="delivered-check">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20,6 9,17 4,12"/></svg>
+              Entregado a las 11:45 AM
+            </div>
+            <div class="order-top">
+              <div class="order-meta">
+                <span class="order-num">Mesa 7</span>
+              </div>
+            </div>
+            <ul class="order-items">
+              <li><span class="item-qty">1×</span> Parrilla Campestre</li>
+            </ul>
+            <div class="order-bottom">
+              <span class="order-total">S/ 55.00</span>
+              <button class="btn-sm btn-bill">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                Cobrar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════
+         GALERÍA
+    ═══════════════════════════════ -->
+    <section id="page-galeria" class="content-page">
+      <div class="page-header">
+        <div>
+          <h2 class="page-title">Galería</h2>
+          <p class="page-sub">Imágenes de nuestro establecimiento y servicios</p>
+        </div>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item gallery-wide">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=80" alt="Vista general del restaurante"/>
+          <div class="gallery-caption">Vista general del restaurante</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80" alt="Canchas deportivas"/>
+          <div class="gallery-caption">Canchas deportivas</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80" alt="Piscina familiar"/>
+          <div class="gallery-caption">Piscina familiar</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80" alt="Parrilla al carbón"/>
+          <div class="gallery-caption">Parrilla al carbón</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=600&q=80" alt="Salon principal"/>
+          <div class="gallery-caption">Salon principal</div>
+        </div>
+        <div class="gallery-item gallery-tall">
+          <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&q=80" alt="Área de eventos"/>
+          <div class="gallery-caption">Área de eventos</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80" alt="Platos especiales"/>
+          <div class="gallery-caption">Platos especiales</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&q=80" alt="Ambiente campestre"/>
+          <div class="gallery-caption">Ambiente campestre</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════
+         DASHBOARD — CON CANCHAS
+    ═══════════════════════════════ -->
+    <section id="page-dashboard" class="content-page">
+      <div class="page-header">
+        <div>
+          <h2 class="page-title">Dashboard Administrativo</h2>
+          <p class="page-sub">Resumen ejecutivo del establecimiento</p>
+        </div>
+        <span class="date-label">Mayo 2026</span>
+      </div>
+
+      <!-- KPI GENERAL -->
+      <div class="dash-section-label">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Resumen General
+      </div>
+      <div class="kpi-grid">
+        <div class="kpi-card kpi-green">
+          <div class="kpi-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div>
+            <p class="kpi-label">Ingresos del día</p>
+            <p class="kpi-value">S/ 4,630</p>
+            <p class="kpi-change positive">+12% vs ayer</p>
+          </div>
+        </div>
+        <div class="kpi-card kpi-amber">
+          <div class="kpi-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <div>
+            <p class="kpi-label">Reservas confirmadas</p>
+            <p class="kpi-value">24</p>
+            <p class="kpi-change positive">+4 nuevas hoy</p>
+          </div>
+        </div>
+        <div class="kpi-card kpi-brown">
+          <div class="kpi-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg>
+          </div>
+          <div>
+            <p class="kpi-label">Plato más vendido</p>
+            <p class="kpi-value">Cuy Frito</p>
+            <p class="kpi-change neutral">18 pedidos hoy</p>
+          </div>
+        </div>
+        <div class="kpi-card kpi-red">
+          <div class="kpi-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div>
+            <p class="kpi-label">Ocupación mesas</p>
+            <p class="kpi-value">78%</p>
+            <p class="kpi-change negative">-5% vs semana</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- KPI CANCHAS -->
+      <div class="dash-section-label" style="margin-top:28px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+        Canchas Deportivas
+      </div>
+      <div class="kpi-grid kpi-canchas">
+        <div class="kpi-card kpi-sport-green">
+          <div class="kpi-icon">
+            <span style="font-size:1.3rem">⚽</span>
+          </div>
+          <div>
+            <p class="kpi-label">Ingresos canchas hoy</p>
+            <p class="kpi-value">S/ 380</p>
+            <p class="kpi-change positive">+8% vs ayer</p>
+          </div>
+        </div>
+        <div class="kpi-card kpi-sport-blue">
+          <div class="kpi-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <div>
+            <p class="kpi-label">Reservas de canchas</p>
+            <p class="kpi-value">12</p>
+            <p class="kpi-change positive">+2 vs ayer</p>
+          </div>
+        </div>
+        <div class="kpi-card kpi-sport-amber">
+          <div class="kpi-icon">
+            <span style="font-size:1.3rem">🏐</span>
+          </div>
+          <div>
+            <p class="kpi-label">Cancha más popular</p>
+            <p class="kpi-value">Fútbol N°1</p>
+            <p class="kpi-change neutral">8 reservas/sem</p>
+          </div>
+        </div>
+        <div class="kpi-card kpi-sport-red">
+          <div class="kpi-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <p class="kpi-label">Ocupación canchas</p>
+            <p class="kpi-value">65%</p>
+            <p class="kpi-change positive">+10% vs semana</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-area">
+        <div class="chart-box">
+          <h3>Ventas por día — esta semana</h3>
+          <div class="bar-chart" id="barChart">
+            <div class="bar-wrap"><div class="bar" style="--h:60%"><span class="bar-val">S/2.8k</span><span class="bar-lbl">Lun</span></div></div>
+            <div class="bar-wrap"><div class="bar" style="--h:80%"><span class="bar-val">S/3.5k</span><span class="bar-lbl">Mar</span></div></div>
+            <div class="bar-wrap"><div class="bar" style="--h:45%"><span class="bar-val">S/2.1k</span><span class="bar-lbl">Mié</span></div></div>
+            <div class="bar-wrap"><div class="bar" style="--h:90%"><span class="bar-val">S/4.0k</span><span class="bar-lbl">Jue</span></div></div>
+            <div class="bar-wrap"><div class="bar highlight" style="--h:100%"><span class="bar-val">S/4.6k</span><span class="bar-lbl">Vie</span></div></div>
+            <div class="bar-wrap"><div class="bar" style="--h:95%"><span class="bar-val">S/4.1k</span><span class="bar-lbl">Sáb</span></div></div>
+            <div class="bar-wrap"><div class="bar" style="--h:85%"><span class="bar-val">S/3.8k</span><span class="bar-lbl">Dom</span></div></div>
+          </div>
+        </div>
+        <div class="chart-box">
+          <h3>Distribución por servicio</h3>
+          <div class="donut-chart">
+            <svg viewBox="0 0 100 100" width="160" height="160">
+              <circle cx="50" cy="50" r="38" fill="none" stroke="#8B5E3C" stroke-width="14" stroke-dasharray="63.5 167.6" stroke-dashoffset="0" transform="rotate(-90 50 50)"/>
+              <circle cx="50" cy="50" r="38" fill="none" stroke="#C9A96E" stroke-width="14" stroke-dasharray="44.8 167.6" stroke-dashoffset="-63.5" transform="rotate(-90 50 50)"/>
+              <circle cx="50" cy="50" r="38" fill="none" stroke="#4A7C59" stroke-width="14" stroke-dasharray="30.1 167.6" stroke-dashoffset="-108.3" transform="rotate(-90 50 50)"/>
+              <circle cx="50" cy="50" r="38" fill="none" stroke="#2C6E8A" stroke-width="14" stroke-dasharray="20.2 167.6" stroke-dashoffset="-138.4" transform="rotate(-90 50 50)"/>
+              <circle cx="50" cy="50" r="38" fill="none" stroke="#2C3E2D" stroke-width="14" stroke-dasharray="13.5 167.6" stroke-dashoffset="-158.6" transform="rotate(-90 50 50)"/>
+            </svg>
+            <div class="donut-legend">
+              <div class="legend-item"><span class="dot" style="background:#8B5E3C"></span> Restaurante 38%</div>
+              <div class="legend-item"><span class="dot" style="background:#C9A96E"></span> Canchas 27%</div>
+              <div class="legend-item"><span class="dot" style="background:#4A7C59"></span> Piscina 18%</div>
+              <div class="legend-item"><span class="dot" style="background:#2C6E8A"></span> Eventos 12%</div>
+              <div class="legend-item"><span class="dot" style="background:#2C3E2D"></span> Otros 5%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CANCHAS - INGRESOS SEMANA -->
+      <div class="chart-box" style="margin-bottom:20px">
+        <h3>Ingresos canchas por día — esta semana</h3>
+        <div class="bar-chart" style="margin-top:8px">
+          <div class="bar-wrap"><div class="bar sport-bar" style="--h:40%"><span class="bar-val">S/180</span><span class="bar-lbl">Lun</span></div></div>
+          <div class="bar-wrap"><div class="bar sport-bar" style="--h:65%"><span class="bar-val">S/290</span><span class="bar-lbl">Mar</span></div></div>
+          <div class="bar-wrap"><div class="bar sport-bar" style="--h:30%"><span class="bar-val">S/130</span><span class="bar-lbl">Mié</span></div></div>
+          <div class="bar-wrap"><div class="bar sport-bar" style="--h:80%"><span class="bar-val">S/360</span><span class="bar-lbl">Jue</span></div></div>
+          <div class="bar-wrap"><div class="bar sport-bar highlight-sport" style="--h:100%"><span class="bar-val">S/380</span><span class="bar-lbl">Vie</span></div></div>
+          <div class="bar-wrap"><div class="bar sport-bar" style="--h:90%"><span class="bar-val">S/410</span><span class="bar-lbl">Sáb</span></div></div>
+          <div class="bar-wrap"><div class="bar sport-bar" style="--h:95%"><span class="bar-val">S/430</span><span class="bar-lbl">Dom</span></div></div>
+        </div>
+      </div>
+
+      <div class="stock-alerts">
+        <h3>Alertas de inventario</h3>
+        <div class="alert-list">
+          <div class="alert-item">
+            <span class="alert-name">Lomo fino</span>
+            <div class="stock-bar"><div class="stock-fill" style="width:15%"></div></div>
+            <span class="stock-qty danger">3 kg restantes</span>
+          </div>
+          <div class="alert-item">
+            <span class="alert-name">Pisco</span>
+            <div class="stock-bar"><div class="stock-fill" style="width:22%"></div></div>
+            <span class="stock-qty warning">4 botellas</span>
+          </div>
+          <div class="alert-item">
+            <span class="alert-name">Pollo entero</span>
+            <div class="stock-bar"><div class="stock-fill" style="width:30%"></div></div>
+            <span class="stock-qty warning">6 unidades</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════
+         CONTACTO
+    ═══════════════════════════════ -->
+    <section id="page-contacto" class="content-page">
+      <div class="page-header">
+        <div>
+          <h2 class="page-title">Contacto e Información</h2>
+          <p class="page-sub">Estamos para atenderte</p>
+        </div>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <h4>Ubicación</h4>
+          <p>Carretera a Pimentel Km 3.5<br/>Chiclayo – Lambayeque, Perú</p>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.56 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <h4>Teléfonos</h4>
+          <p>(074) 234-567<br/>+51 944-000-111 (WhatsApp)</p>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+          </div>
+          <h4>Horario</h4>
+          <p>Lunes a Viernes: 12:00 – 8:00 PM<br/>Fines de semana: 10:00 AM – 10:00 PM</p>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <h4>Correo</h4>
+          <p>contacto@establomontenegro.pe<br/>reservas@establomontenegro.pe</p>
+        </div>
+      </div>
+      <div class="map-section">
+        <h3 class="map-title">Nuestra Ubicación</h3>
+        <div class="map-wrapper">
+          <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d700.3521443266262!2d-79.88450436215358!3d-6.795386249308895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwNDcnNDIuNSJTIDc5wrA1MycwMi45Ilc!5e0!3m2!1ses-419!2spe!4v1777694639400!5m2!1ses-419!2spe" 
+              width="100%" height="420" style="border:0;display:block;" 
+              allowfullscreen="" loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Restaurant Campestre Establo Montenegro">
+          </iframe>
+        </div>
+      </div>
+      <div class="contact-form-section">
+        <h3>Enviar un mensaje</h3>
+        <div class="contact-form">
+          <div class="form-row">
+            <div class="input-group">
+              <label>Nombre completo</label>
+              <input type="text" placeholder="Tu nombre"/>
+            </div>
+            <div class="input-group">
+              <label>Correo electrónico</label>
+              <input type="email" placeholder="correo@ejemplo.com"/>
+            </div>
+          </div>
+          <div class="input-group">
+            <label>Asunto</label>
+            <input type="text" placeholder="Motivo del mensaje"/>
+          </div>
+          <div class="input-group">
+            <label>Mensaje</label>
+            <textarea rows="4" placeholder="Escribe tu mensaje aquí..."></textarea>
+          </div>
+          <button class="btn-primary" id="btnSendMsg">Enviar mensaje</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">Establo Montenegro</div>
+        <p class="footer-tagline">Restaurante Campestre &middot; Chiclayo, Lambayeque</p>
+        <p class="footer-desc">Una experiencia gastronómica auténtica rodeada de naturaleza, donde la tradición culinaria norteña cobra vida en cada plato.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="WhatsApp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-links-col">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="#" data-page="inicio">Inicio</a></li>
+          <li><a href="#" data-page="reservas">Reservas</a></li>
+          <li><a href="#" data-page="menu">Carta del restaurante</a></li>
+          <li><a href="#" data-page="canchas">Canchas deportivas</a></li>
+          <li><a href="#" data-page="pedidos">Gestión de pedidos</a></li>
+          <li><a href="#" data-page="dashboard">Dashboard</a></li>
+        </ul>
+      </div>
+      <div class="footer-links-col">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="#">Cancha fútbol 11</a></li>
+          <li><a href="#">Cancha fútbol 7</a></li>
+          <li><a href="#">Vóley playa</a></li>
+          <li><a href="#">Piscina familiar</a></li>
+          <li><a href="#">Restaurante campestre</a></li>
+          <li><a href="#">Eventos privados</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact-col">
+        <h4>Contacto</h4>
+        <div class="footer-contact-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Carretera a Pimentel Km 3.5, Chiclayo</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.56 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span>(074) 234-567 / +51 944-000-111</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span>contacto@establomontenegro.pe</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+          <span>Lun–Vie: 12–8pm | Sáb–Dom: 10am–10pm</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Establo Montenegro. Todos los derechos reservados.</p>
+      <p>Desarrollado con dedicación para Chiclayo, Lambayeque &mdash; Perú</p>
+    </div>
+  </footer>
+
+</div><!-- end #app -->
+
+<!-- MODAL: NUEVA RESERVA -->
+<div class="modal-overlay hidden" id="reservaModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="modalTitle">Nueva Reserva</h3>
+      <button class="modal-close" id="closeModal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="input-group">
+          <label>Cliente</label>
+          <input type="text" id="modalCliente" placeholder="Nombre del cliente"/>
+        </div>
+        <div class="input-group">
+          <label>Teléfono</label>
+          <input type="tel" id="modalTelefono" placeholder="Número de contacto"/>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="input-group">
+          <label>Servicio</label>
+          <select id="modalServicio">
+            <option>Cancha fútbol</option>
+            <option>Vóley</option>
+            <option>Piscina</option>
+            <option>Restaurante</option>
+            <option>Evento privado</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label>N° de personas</label>
+          <input type="number" id="modalPersonas" min="1" placeholder="Cantidad"/>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="input-group">
+          <label>Fecha</label>
+          <input type="date" id="modalFecha"/>
+        </div>
+        <div class="input-group">
+          <label>Hora</label>
+          <input type="time" id="modalHora"/>
+        </div>
+      </div>
+      <div class="input-group">
+        <label>Observaciones</label>
+        <textarea rows="3" id="modalObs" placeholder="Notas adicionales..."></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-secondary" id="cancelModal">Cancelar</button>
+      <button class="btn-primary" id="saveReserva">Guardar Reserva</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast hidden" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
